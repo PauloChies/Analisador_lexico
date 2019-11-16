@@ -32,8 +32,6 @@ const montaTabela = itemTab => {
 };
 
 const validaPalavra = () => {
-	var primChar = 'a';
-	var ultiChar = 'z';
 	var palavras = ($('#buscar_palavras').val()).toLowerCase();
 	if(palavras.length == 0){ // Verifica se o campo está vazio, assim ele reseta todos os efeitos na tabela
 		$('#tabela_tbody tr').removeClass('focus-linha');
@@ -52,37 +50,27 @@ const validaPalavra = () => {
 			}
 		} else if(palavras[i] == ' '){
 			var plvrEncontrada = `<span class='right'><i class="far fa-check-circle"></i></span>`;
-			//var plvrNaoFinal = `<span class='right'><i class='material-icons'>info_outline</i><i class='material-icons remove-icon' id='rmv-plvr-tkn'>remove_circle_outline</i><span>Estado não final</span></span>`;
 			var plvrNaoEncontrada = `<span class='right'><i class="fas fa-minus-circle"></i></span>`;
 			if (erroEstado == false) {
 				if (Tabela[estado]['final']) { //Se o estado for final da Encontrado, se não da Estado não final
 					$('#palavras_encontradas').append(`<tr><td class='plvr-overflow'>${palavras}</td><td>${plvrEncontrada}</td></tr>`);
 					alert("palavra encontrada");
 				} else {
+					$('#palavras_encontradas').append(`<tr><td class='plvr-overflow'>${palavras}</td><td>${plvrNaoEncontrada}</td></tr>`);
+					alert("palavra não final");
 				}
 			} else {
 				$('#palavras_encontradas').append(`<tr><td class='plvr-overflow'>${palavras}</td><td>${plvrNaoEncontrada}</td></tr>`);
-				alert("palavra nao encontrada");
+				alert("palavra não encontrada");
 			}
 			$('#tabela_tbody tr').removeClass('focus-linha');
 			$('#tabela_tbody td').removeClass('focus-coluna');
 			$('#buscar_palavras').val('');
 		} else if(erroEstado == false) {
-			alert("???");
+			alert("Apenas caracteres válidos");
 		}
 	}
 };
-
-$( "#limpar_html" ).click(function() {
-	$('#tabela_tbody').html('');
-	$('#palavras_encontradas').html('');
-	$('#input-field').html('');
-	Palavras = [];
-	IteracaoDosEstados = [0];
-	EstadoGlobal = 0;
-	Estados = [[]];
-	Tabela 	= [];
-});
 
 const highlightTabela = (estado, palavra, erroEstado) => {
 	$('#tabela_tbody tr').removeClass('focus-linha');

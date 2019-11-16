@@ -105,6 +105,17 @@
 			</div>
 		</div>
 	</div>
-	
+	<script>
+		$( "#limpar_html" ).click(function() {
+			$('#tabela_tbody').html('');
+			$('#palavras_encontradas').html('');
+			$('#input-field').html('');
+			Palavras = [];
+			IteracaoDosEstados = [0];
+			EstadoGlobal = 0;
+			Estados = [[]];
+			Tabela 	= [];
+		});
+	</script>
   </body>
 </html>

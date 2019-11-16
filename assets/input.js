@@ -37,7 +37,7 @@ $(document).ready(function(){
 
 const addPalavras = palavra => {
 	if (Palavras.indexOf(palavra) < 0 && palavra.length > 0) {
-		$('#input-field').append(`<span class='addedWord ${palavra}'>${palavra}
+		$('#input-field').append(`<span class='addedWord'>${palavra}
 								<i onclick=\"rmvPalavras('${palavra}')\" class='fas fa-trash'></i> </span><br>`);
 		Palavras.push(palavra);
 		$('#input_palavras').val('');
@@ -46,8 +46,6 @@ const addPalavras = palavra => {
 
 const rmvPalavras = palavra => {
 	var index = Palavras.indexOf(palavra);
-	console.log("index: ", index);
-	console.log("palavras: ", Palavras);
 	if (index >= 0 && palavra.length > 0) {
 		Palavras.splice(index, 1);
 		$(".addedWord").each(function() {
