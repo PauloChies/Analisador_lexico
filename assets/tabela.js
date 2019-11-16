@@ -1,0 +1,98 @@
+const montaTabela = itemTab => {
+	var tabela = $('#tabela_tbody');
+	tabela.html('');
+	for(var i=0; i<itemTab.length; i++){
+		var tr = $(document.createElement('tr'));
+		var td = $(document.createElement('td'));
+		if(itemTab[i]['final']){
+			td.html('q' + itemTab[i]['estado'] + '*');
+			td.addClass('tem-sel center border-custom');
+		} else {
+			td.html('q' + itemTab[i]['estado']);
+			td.addClass('tem-sel center border-custom');
+		}
+		tr.append(td);
+		tr.addClass('linha_'+itemTab[i]['estado']);
+		var primChar = 'a';
+		var ultiChar = 'z';
+		for(var j=primChar.charCodeAt(0); j<=ultiChar.charCodeAt(0); j++) {
+			var varra = String.fromCharCode(j);
+			var td = $( document.createElement('td') );
+			td.addClass('coluna_'+varra+' center');
+			if(itemTab[i][varra] != '-'){
+				td.html('q' + itemTab[i][varra]);
+				td.addClass('tem-sel');
+			} else {
+				td.html('&delta;').addClass('border-custom');
+			}
+			tr.append(td);
+		}
+		tabela.append(tr);
+	}
+};
+
+const validaPalavra = () => {
+	var primChar = 'a';
+	var ultiChar = 'z';
+	var palavras = ($('#buscar_palavras').val()).toLowerCase();
+	if(palavras.length == 0){ // Verifica se o campo está vazio, assim ele reseta todos os efeitos na tabela
+		$('#tabela_tbody tr').removeClass('focus-linha');
+		$('#tabela_tbody td').removeClass('focus-coluna');
+	}
+	var estado = 0;
+	var erroEstado = false;
+	for(var i=0; i<palavras.length; i++) {
+		var exprRegular = /([a-z_])/;
+		if(exprRegular.test(palavras[i]) && erroEstado == false){
+			highlightTabela(estado, palavras[i], Tabela[estado][palavras[i]]);
+			if(Tabela[estado][palavras[i]] != '-'){ // se o estado não for de erro, ele aceita
+				estado = Tabela[estado][palavras[i]];
+			} else { // Rejeita caso o estado seja de erro
+				erroEstado = true;
+			}
+		} else if(palavras[i] == ' '){
+			var plvrEncontrada = `<span class='right'><i class="far fa-check-circle"></i></span>`;
+			//var plvrNaoFinal = `<span class='right'><i class='material-icons'>info_outline</i><i class='material-icons remove-icon' id='rmv-plvr-tkn'>remove_circle_outline</i><span>Estado não final</span></span>`;
+			var plvrNaoEncontrada = `<span class='right'><i class="fas fa-minus-circle"></i></span>`;
+			if (erroEstado == false) {
+				if (Tabela[estado]['final']) { //Se o estado for final da Encontrado, se não da Estado não final
+					$('#palavras_encontradas').append(`<tr><td class='plvr-overflow'>${palavras}</td><td>${plvrEncontrada}</td></tr>`);
+					alert("palavra encontrada");
+				} else {
+				}
+			} else {
+				$('#palavras_encontradas').append(`<tr><td class='plvr-overflow'>${palavras}</td><td>${plvrNaoEncontrada}</td></tr>`);
+				alert("palavra nao encontrada");
+			}
+			$('#tabela_tbody tr').removeClass('focus-linha');
+			$('#tabela_tbody td').removeClass('focus-coluna');
+			$('#buscar_palavras').val('');
+		} else if(erroEstado == false) {
+			alert("???");
+		}
+	}
+};
+
+$( "#limpar_html" ).click(function() {
+	$('#tabela_tbody').html('');
+	$('#palavras_encontradas').html('');
+	$('#input-field').html('');
+	Palavras = [];
+	IteracaoDosEstados = [0];
+	EstadoGlobal = 0;
+	Estados = [[]];
+	Tabela 	= [];
+});
+
+const highlightTabela = (estado, palavra, erroEstado) => {
+	$('#tabela_tbody tr').removeClass('focus-linha');
+	$('#tabela_tbody td').removeClass('focus-coluna');
+	$('#tabela_tbody tr').removeClass('focus-linha-erro');
+	$('#tabela_tbody td').removeClass('focus-coluna-erro');
+	$('#tabela_tbody .linha_' + estado).addClass('focus-linha');
+	$('#tabela_tbody .coluna_' + palavra).addClass('focus-coluna');
+	if(erroEstado == '-'){
+		$('#tabela_tbody .linha_' + estado).addClass('focus-coluna-erro');
+		$('#tabela_tbody .coluna_' + palavra).addClass('focus-coluna-erro');
+	}
+};

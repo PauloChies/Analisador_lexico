@@ -1,0 +1,53 @@
+.title {
+	color: #fff;
+	font-size: 30px;
+	display: table;
+    margin: 0 auto;
+}
+
+.inputWordsContent {
+	width: 350px;
+	position: absolute;
+    height: -webkit-fill-available;
+}	
+
+.validateWordsContainer {
+	display: flex;
+}	
+
+.left {
+	margin-right: 80px;
+}	
+
+.inputWordsContent, .container {
+	margin-top: 30px;
+}	
+
+/** Highlight Table **/
+.focus-linha td,
+.focus-coluna{
+	background: rgba(76,175,80,0.1);
+}
+.focus-linha td.focus-coluna{
+	color: #e7edee;
+	background: rgba(76,175,80,0.7);
+}
+.focus-linha td,
+.focus-coluna{
+	background: rgba(76,175,80,0.1);
+}
+.focus-linha td.focus-coluna-erro{
+	color: #e7edee;
+	background: rgba(231, 76, 60, 0.7);
+}
+.fa-minus-circle {
+	color: red;
+}	
+.fa-check-circle {
+	color: green;
+}	
+
+.fas.fa-trash:hover {
+	color: red;
+	cursor: pointer;
+}	

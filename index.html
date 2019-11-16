@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Analisador Léxico</title>
+    <meta charset="utf-8">
+	<link rel="stylesheet" href="assets/index.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="assets/tabela.js"></script>
+	<script src="assets/input.js"></script>
+	<script src="https://kit.fontawesome.com/2ad8f0bb00.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <header class="navbar navbar-dark bg-primary">
+		<span class="title">Analisador Léxico</span>
+	</header>
+	<div class="inputWordsContent">
+		<div class="card text-center">
+		  <div class="card-body">
+			<h5 class="card-title">Adicionar Palavras</h5>
+			<div>
+				<div class="input-field">
+					<input id="input_palavras" type="text" value="">
+					<label for="input_palavras"></label>
+				</div>
+				<div class="direction-btn">
+					<button id="insere_palavras" style="margin-top: 25px;" class="btn btn-success">Adicionar</button>
+					<button id="limpar_html" style="margin-top: 25px;" class="btn btn-dark">Limpar Analisador</button>
+				</div>
+			</div>
+		  </div>
+		  <div class="card-body">
+			<h5 class="card-title">Palavras Adicionadas</h5>
+			<div id="input-field">
+			</div>
+		  </div>
+		</div>
+	</div>
+	
+	<div class="container">
+		<div class="validateWordsContainer">
+			<div class="left" style="width: 250px">
+				<div class="card text-center">
+					<div class="card-body">
+						<h5 class="card-title">Validar Palavras</h5>
+						<div>
+							<input placeholder="Pesquise uma palavra" id="buscar_palavras" type="text" value="">
+							<label for="buscar_palavras"></label>
+						</div>
+					</div>
+					<h5 class="card-title">Palavras Encontradas:</h5>
+					<table class="table-busca">
+						<thead>
+							<tr>
+								<th>Palavra</th>
+								<th>Status</th>
+							</tr>
+						</thead>
+						<tbody id="palavras_encontradas"></tbody>
+					</table>
+				</div>
+			</div>	
+			<div class="right">
+				<div class="card text-center">
+					<div class="card-body">
+						<h5 class="card-title">Tabela de estados das palavras</h5>
+						<div class="tableContainer">
+							<table class="table table-striped">
+								<thead>
+						          <tr>
+									<th class="col">&delta;</th>
+									<th class="col">A</th>
+									<th class="col">B</th>
+									<th class="col">C</th>
+									<th class="col">D</th>
+									<th class="col">E</th>
+									<th class="col">F</th>
+									<th class="col">G</th>
+									<th class="col">H</th>
+									<th class="col">I</th>
+									<th class="col">J</th>
+									<th class="col">K</th>
+									<th class="col">L</th>
+									<th class="col">M</th>
+									<th class="col">N</th>
+									<th class="col">O</th>
+									<th class="col">P</th>
+									<th class="col">Q</th>
+									<th class="col">R</th>
+									<th class="col">S</th>
+									<th class="col">T</th>
+									<th class="col">U</th>
+									<th class="col">V</th>
+									<th class="col">W</th>
+									<th class="col">X</th>
+									<th class="col">Y</th>
+									<th class="col">Z</th>
+						          </tr>
+						        </thead>
+						        <tbody id="tabela_tbody"></tbody>
+							</table>
+						</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+  </body>
+</html>
