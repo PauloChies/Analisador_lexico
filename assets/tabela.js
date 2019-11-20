@@ -23,7 +23,7 @@ const montaTabela = itemTab => {
 				td.html('q' + itemTab[i][varra]);
 				td.addClass('tem-sel');
 			} else {
-				td.html('&delta;').addClass('border-custom');
+				td.html('-').addClass('border-custom');
 			}
 			tr.append(td);
 		}

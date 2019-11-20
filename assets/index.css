@@ -16,7 +16,12 @@
 }	
 
 .left {
-	margin-right: 80px;
+	margin-right: 50px;
+	width: 350px;
+}	
+
+.left .card {
+	width: 350px;
 }	
 
 .inputWordsContent, .container {
