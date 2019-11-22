@@ -33,16 +33,19 @@ const montaTabela = itemTab => {
 
 const validaPalavra = () => {
 	var palavras = ($('#buscar_palavras').val()).toLowerCase();
-	if(palavras.length == 0){ // Verifica se o campo está vazio, assim ele reseta todos os efeitos na tabela
+	
+	if(palavras.length == 0){
 		$('#tabela_tbody tr').removeClass('focus-linha');
 		$('#tabela_tbody td').removeClass('focus-coluna');
 	}
 	var estado = 0;
 	var erroEstado = false;
+	
 	for(var i=0; i<palavras.length; i++) {
 		var exprRegular = /([a-z_])/;
 		if(exprRegular.test(palavras[i]) && erroEstado == false){
 			highlightTabela(estado, palavras[i], Tabela[estado][palavras[i]]);
+			
 			if(Tabela[estado][palavras[i]] != '-'){ // se o estado não for de erro, ele aceita
 				estado = Tabela[estado][palavras[i]];
 			} else { // Rejeita caso o estado seja de erro
@@ -51,6 +54,7 @@ const validaPalavra = () => {
 		} else if(palavras[i] == ' '){
 			var plvrEncontrada = `<span class='right'><i class="far fa-check-circle"></i></span>`;
 			var plvrNaoEncontrada = `<span class='right'><i class="fas fa-minus-circle"></i></span>`;
+			
 			if (erroEstado == false) {
 				if (Tabela[estado]['final']) { //Se o estado for final da Encontrado, se não da Estado não final
 					$('#palavras_encontradas').append(`<tr><td class='plvr-overflow'>${palavras}</td><td>${plvrEncontrada}</td></tr>`);
