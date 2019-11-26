@@ -10,10 +10,6 @@ $(document).ready(function(){
 		if(palavra){
 			addPalavras(palavra);
 		}
-
-		montaEstadoPalavra();
-		Tabela = geraLinhasTabela();
-		montaTabela(Tabela);
 	});
 
 	$('#buscar_palavras').keyup(() => {
@@ -22,7 +18,7 @@ $(document).ready(function(){
 		}
 	});
 
-	$('#input_palavras').keyup(() => {
+	$('#input_palavras').on('keypress',function(e) {
 		var palavra = ($('#input_palavras').val()).toLowerCase();
 		var exprRegular = /([^A-Za-z_])/;
 		if(exprRegular.test(palavra)){
@@ -30,6 +26,12 @@ $(document).ready(function(){
 			$('#input_palavras').val(palavra.replace(palavra.slice(-1), ''));
 		} else {
 			$('#insere_palavras').removeClass('disabled');
+		}
+		
+		if(e.which == 13) {
+			if(palavra){
+				addPalavras(palavra);
+			}
 		}
 	});
 
@@ -42,6 +44,9 @@ const addPalavras = palavra => {
 		Palavras.push(palavra);
 		$('#input_palavras').val('');
 	} 
+	montaEstadoPalavra();
+	Tabela = geraLinhasTabela();
+	montaTabela(Tabela);
 };
 
 const rmvPalavras = palavra => {
@@ -50,7 +55,11 @@ const rmvPalavras = palavra => {
 		Palavras.splice(index, 1);
 		$(".addedWord").each(function() {
 		    if ($(this).text().trim() == palavra.trim()) {
-			  $(this).hide();
+				$(this).css({
+				   'color' : 'grey',
+				   'text-decoration' : 'line-through'
+				});
+				$(this).find("i").hide();
 		    }
 		});
 	}
@@ -59,6 +68,7 @@ const rmvPalavras = palavra => {
 
 function limpaRefazAnalisador() {
 	$('#tabela_tbody').html('');
+	$('#palavras_encontradas').html('');
 	IteracaoDosEstados = [0];
 	EstadoGlobal = 0;
 	Estados = [[]];
@@ -77,9 +87,13 @@ const montaEstadoPalavra = () => {
 				var proximoEstado = EstadoGlobal + 1;
 				Estados[estadoAtual][palavrasArray[j]] = proximoEstado;
 				Estados[proximoEstado] = [];
+				console.log("Estados: ", Estados);
 				EstadoGlobal = estadoAtual = proximoEstado;
+				console.log("EstadoGlobal: ", EstadoGlobal);
 			} else {
+				console.log("Estados: ", Estados);
 				estadoAtual = Estados[estadoAtual][palavrasArray[j]];
+				console.log("estadoAtual: ", estadoAtual);
 			}
 
 			if(j == palavrasArray.length - 1){

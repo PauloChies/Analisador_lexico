@@ -6,28 +6,33 @@
 }
 
 .inputWordsContent {
-	width: 350px;
-	position: absolute;
+	width: 300px;
     height: -webkit-fill-available;
+	margin-left: 5px;
 }	
 
 .validateWordsContainer {
 	display: flex;
+	margin-left: 46px;
 }	
 
 .left {
-	margin-right: 50px;
-	width: 350px;
-}	
-
-.left .card {
-	width: 350px;
-}	
-
-.inputWordsContent, .container {
+	margin-right: 10px;
 	margin-top: 30px;
 }	
 
+.left {
+	width: 300px;
+}	
+
+.container {
+	margin-top: 30px;
+}	
+
+.container {
+	max-width: 90% !important;
+	display: flex;
+}	
 /** Highlight Table **/
 .focus-linha td,
 .focus-coluna{

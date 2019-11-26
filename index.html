@@ -5,6 +5,7 @@
     <meta charset="utf-8">
 	<link rel="stylesheet" href="assets/index.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://kit.fontawesome.com/2ad8f0bb00.js" crossorigin="anonymous"></script>
 	<script src="assets/tabela.js"></script>
 	<script src="assets/input.js"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -14,7 +15,10 @@
     <header class="navbar bg-primary">
 		<span class="title">Analisador Léxico</span>
 	</header>
-	<div class="inputWordsContent">
+	
+	
+	<div class="container">
+		<div class="inputWordsContent">
 		<div class="card text-center">
 		  <div class="card-body">
 			<h5 class="card-title">Adicionar Palavras</h5>
@@ -35,31 +39,30 @@
 			</div>
 		  </div>
 		</div>
-	</div>
-	
-	<div class="container">
-		<div class="validateWordsContainer">
-			<div class="left">
-				<div class="card text-center">
-					<div class="card-body">
-						<h5 class="card-title">Validar Palavras</h5>
-						<div>
-							<input placeholder="Pesquise uma palavra" id="buscar_palavras" type="text" value="">
-							<label for="buscar_palavras"></label>
-						</div>
+		
+		<div class="left">
+			<div class="card text-center">
+				<div class="card-body">
+					<h5 class="card-title">Validar Palavras</h5>
+					<div>
+						<input placeholder="Pesquise uma palavra" id="buscar_palavras" type="text" value="">
+						<label for="buscar_palavras"></label>
 					</div>
-					<h5 class="card-title">Palavras Encontradas:</h5>
-					<table class="table-busca">
-						<thead>
-							<tr>
-								<th>Palavra</th>
-								<th>Status</th>
-							</tr>
-						</thead>
-						<tbody id="palavras_encontradas"></tbody>
-					</table>
 				</div>
-			</div>	
+				<h5 class="card-title">Palavras Encontradas:</h5>
+				<table class="table-busca">
+					<thead>
+						<tr>
+							<th>Palavra</th>
+							<th>Status</th>
+						</tr>
+					</thead>
+					<tbody id="palavras_encontradas"></tbody>
+				</table>
+			</div>
+		</div>	
+	</div>
+		<div class="validateWordsContainer">
 			<div class="right">
 				<div class="card text-center">
 					<div class="card-body">
